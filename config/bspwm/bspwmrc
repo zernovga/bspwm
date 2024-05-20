@@ -34,9 +34,9 @@ xrdb -merge ~/.Xresources
 dunst -config $HOME/.config/bspwm/dunstrc &
 
 # launch battery tracker
-pkill battery-alert; ~/bin/battery-alert &
+pkill battery-alert; ~/.config/bin/battery-alert &
 
 # start picom
 picom --config $HOME/.config/picom/picom.conf & 
 
-bash $HOME/bin/random_wallpaper
+bash $HOME/.config/bin/random_wallpaper

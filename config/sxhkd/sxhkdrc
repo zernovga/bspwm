@@ -1,3 +1,6 @@
+# Sxhkd keybindings
+# xev | awk -F'[ )]+' '/^KeyPress/ { a[NR+2] } NR in a { printf "%-3s %s\n", $5, $8 }'
+
 #
 # wm independent hotkeys
 #
@@ -6,15 +9,15 @@
 # super + Return
 # 	gnome-terminal
 
-super + d:
+super + d
 	rofi -show drun
 
-super + \:
-	sh $HOME/bin/screen-lock2 	
+super + \
+	sh $HOME/.config/bin/screen-lock2 	
 
 # program launcher
 super + @space
-	bash $HOME/bin/change_language.sh
+	bash $HOME/.config/bin/change_language.sh
 #	dmenu_run
 
 # make sxhkd reload its configuration files:
@@ -23,16 +26,19 @@ super + Escape
 
 
 super + alt + w
-	bash $HOME/bin/random_wallpaper
+	bash $HOME/.config/bin/random_wallpaper
 
-super + shift + {f,t,c,x,k,g}
+super + shift + {f,t,c,x,k,g,o}
 	{thunar, \
 	telegram-desktop, \
 	code, \
-	sh $HOME/bin/xcolor-pick, \
+	sh $HOME/.config/bin/xcolor-pick, \
 	alacritty, \
-	google-chrome-stable}
-	
+	google-chrome-stable, \
+	obsidian}
+
+Print; @Print
+	flameshot gui
 #
 # bspwm hotkeys
 #
@@ -93,14 +99,14 @@ super + {grave,Tab}
 	bspc {node,desktop} -f last
 
 # focus the older or newer node in the focus history
-super + {o,i}
-	bspc wm -h off; \
-	bspc node {older,newer} -f; \
-	bspc wm -h on
+# super + {o,i}
+# 	bspc wm -h off; \
+# 	bspc node {older,newer} -f; \
+# 	bspc wm -h on
 
 # focus or send to the given desktop
-super + {_,shift + }{1-5}
-	bspc {desktop -f,node -d} '^{1-5}' --follow
+super + {_,shift + }{1-8}
+	bspc {desktop -f,node -d} '^{1-8}' --follow
 
 #
 # preselect
@@ -140,11 +146,11 @@ super + {Left,Down,Up,Right}
 
 # Volume controls
 XF86Audio{RaiseVolume,LowerVolume,Mute}
-    bash $HOME/bin/volume{ --up, --down, --toggle}
+    bash $HOME/.config/bin/volume{ --up, --down, --toggle}
 
 # Brightness controls
 XF86MonBrightness{Up,Down}
-    bash $HOME/bin/brightness{ --up, --down}
+    bash $HOME/.config/bin/brightness.sh{ --up, --down}
 
 super + Insert
-	bash $HOME/bin/screen-lock2
+	bash $HOME/.config/bin/screen-lock2
