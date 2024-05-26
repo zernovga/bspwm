@@ -1,0 +1,8 @@
+betterlockscreen
+blight
+google-chrome
+nvim-packer-git
+pulseaudio-control
+visual-studio-code-bin
+yay-git
+yay-git-debug
