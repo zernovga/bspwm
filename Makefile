@@ -11,10 +11,14 @@ create_config_dirs: install_packages
 	# iterate over all subdirectories in config and create them if they don't exist in ~/.config
 	@cd config && find . -type d | xargs -I {} mkdir -p ~/.config/{}
 
+# install_packages: SHELL:=/bin/bash
 install_packages:
-	@pacman -S --needed $(comm -12 <(pacman -Slq | sort) <(sort pkglist.txt))
-
-
+	@PKGLIST=$$(comm -12 <(pacman -Slq | sort) <(sort pkglist.txt)); \
+	#echo "Final list of packages: $$PKGLIST";\
+	sudo pacman -S --needed --noconfirm $$PKGLIST; \
+	exec 9<foreignpkglist.txt; \
+	while read -u9 pkg; do yay -S --needed --noconfirm  $$pkg; done
+	
 save:
 	@pacman -Qqe > pkglist.txt
 	@pacman -Qqem > foreignpkglist.txt
