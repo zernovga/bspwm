@@ -11,7 +11,6 @@ create_config_dirs: install_packages
 	# iterate over all subdirectories in config and create them if they don't exist in ~/.config
 	@cd config && find . -type d | xargs -I {} mkdir -p ~/.config/{}
 
-# install_packages: SHELL:=/bin/bash
 install_packages:
 	@PKGLIST=$$(comm -12 <(pacman -Slq | sort) <(sort pkglist.txt)); \
 	#echo "Final list of packages: $$PKGLIST";\
