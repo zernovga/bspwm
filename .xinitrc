@@ -5,6 +5,8 @@ usermodmap=$HOME/.Xmodmap
 sysresources=/etc/X11/xinit/.Xresources
 sysmodmap=/etc/X11/xinit/.Xmodmap
 
+/usr/bin/prime-offload
+
 # merge in defaults and keymaps
 
 if [ -f $sysresources ]; then
@@ -42,4 +44,7 @@ fi
 
 picom -f &
 xsetroot -cursor_name left_ptr
-exec bspwm
+
+bspwm
+
+sudo /usr/bin/prime-switch
